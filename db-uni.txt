@@ -39,26 +39,40 @@ SELECT COUNT(id)
 FROM `teachers` 
 WHERE `phone` IS NOT NULL;
 
+9-Inserire nella tabella degli studenti un nuovo record con i propri dati (per il campo degree_id, inserire un valore casuale)
+INSERT INTO students (id, degree_id, name, surname, date_of_birth, fiscal_code, enrolment_date, registration_number, email)
+VALUES (9999, 1, 'Mario', 'Rossi', '1995-05-15', 'RSSMRA95E15F205Z', '2025-01-21', '12345678', 'mario.rossi@example.com');
+
+10-Cambiare il numero dell’ufficio del professor Pietro Rizzo in 126
+UPDATE `teachers`
+SET `office_address` = 126
+WHERE `id` = 58
+
+11-Eliminare dalla tabella studenti il record creato precedentemente al punto 9
+DELETE
+FROM `students`
+WHERE `id` = 9999
+
 
 
 BONUS:
 
 1-Contare quanti iscritti ci sono stati ogni anno
-select count(*), year(`enrolment_date`)
-from `students`
-group by year(`enrolment_date`);
+SELECT COUNT(*), year(`enrolment_date`)
+FROM `students`
+GROUP BY year(`enrolment_date`);
 
 2-Contare gli insegnanti che hanno l'ufficio nello stesso edificio
-select count(*)
-from `teachers`
-group by `office_address`;
+SELECT COUNT(*)
+FROM `teachers`
+GROUP BY `office_address`;
 
 3-Calcolare la media dei voti di ogni appello d'esame
-select `exam_id`, avg(`vote`)
-from `exam_student`
-group by `exam_id`;
+SELECT `exam_id`, avg(`vote`)
+FROM `exam_student`
+GROUP BY `exam_id`;
 
 4-Contare quanti corsi di laurea ci sono per ogni dipartimento
-select count(*)
-from `degrees`
-group by `department_id`;
+SELECT COUNT(*)
+FROM `degrees`
+GROUP BY `department_id`;
